@@ -1,5 +1,6 @@
 function loadAllComments() {
-	var endpoint = 'http://localhost:8080/api/post/allComments';
+	var host = isProduction ? productionHost : devHost;
+	var endpoint = `${host}/api/post/allComments`;
 	var method = 'get';
 	var httpRequest = new XMLHttpRequest();
 

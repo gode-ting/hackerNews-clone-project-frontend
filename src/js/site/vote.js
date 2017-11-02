@@ -11,7 +11,8 @@ function makeVote(event, ele, how) {
 }
 
 function upvoteHttp(postId, username, token) {
-	var endpoint = 'http://localhost:8080/api/post/vote';
+	var host = isProduction ? productionHost : devHost;
+	var endpoint = `${host}/api/post/vote`;
 	var method = 'POST';
 	var body = JSON.stringify({
 		post_id: postId,
@@ -22,7 +23,7 @@ function upvoteHttp(postId, username, token) {
 	var request = new Request(endpoint, {
 		method: method,
 		headers: new Headers({
-			'Access-Control-Allow-Origin': 'http://localhost:8080',
+			'Access-Control-Allow-Origin': endpoint,
 			'Authorization': token,
 			'Content-Type': 'application/json'
 		}),

@@ -20,7 +20,8 @@ function submitPost() {
 		return;
 	}
 
-	var endpoint = 'http://localhost:8080/api/post';
+	var host = isProduction ? productionHost : devHost;
+	var endpoint = `${host}/api/post`;
 	var method = 'post';
 	var body = JSON.stringify({
 		post_title: title,

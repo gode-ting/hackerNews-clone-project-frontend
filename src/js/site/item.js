@@ -5,10 +5,10 @@ function loadItemData() {
 function getItem() {
 	let itemId = getItemIdFromQueryString('id');
 
-	var endpoint = `http://localhost:8080/api/post/comments/${itemId}`;
+	var host = isProduction ? productionHost : devHost;
+	var endpoint = `${host}/api/post/comments/${itemId}`;
 	var method = 'GET';
 	var httpRequest = new XMLHttpRequest();
-	console.log('Item id: ', itemId);
 
 	httpRequest.onreadystatechange = function () {
 		if (httpRequest.readyState === 4 && httpRequest.status === 200) {

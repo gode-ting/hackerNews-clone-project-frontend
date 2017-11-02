@@ -1,5 +1,6 @@
 function loadAllPosts() {
-	var endpoint = 'http://localhost:8080/api/post?page=1';
+	var host = isProduction ? productionHost : devHost;
+	var endpoint = `${host}/api/post?page=1`;
 	var method = 'get';
 	var httpRequest = new XMLHttpRequest();
 

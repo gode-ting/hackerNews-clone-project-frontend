@@ -11,7 +11,10 @@
 		"getItemIdFromQueryString": true,
 		"loadUserProfile": true,
 		"loadItemData": true,
-		"deleteCookie": true
+		"deleteCookie": true,
+		"isProduction": true,
+		"productionHost": true,
+		"devHost": true
 	},
 	"env": {
 		"browser": true

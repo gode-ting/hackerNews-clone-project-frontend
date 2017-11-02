@@ -3,7 +3,8 @@ function loginUser(form) {
 	var username = document.getElementById('usernameLogin').value;
 	var password = document.getElementById('passwordLogin').value;
 
-	var endpoint = 'http://localhost:8080/login';
+	var host = isProduction ? productionHost : devHost;
+	var endpoint = `${host}/login`;
 	var method = 'POST';
 	var body = JSON.stringify({
 		username: username,
@@ -16,7 +17,7 @@ function loginUser(form) {
 		mode: 'CORS',
 		redirect: 'follow',
 		headers: new Headers({
-			'Access-Control-Allow-Origin': 'http://localhost:8080',
+			'Access-Control-Allow-Origin': endpoint,
 			'Access-Control-Allow-Credentials': true,
 			'Access-Control-Expose-Headers': 'Authorization',
 			'Access-Control-Allow-Headers': 'Authorization'
@@ -58,7 +59,8 @@ function signupUser() {
 	var username = document.getElementById('usernameSignup').value;
 	var password = document.getElementById('passwordSignup').value;
 
-	var endpoint = 'http://localhost:8080/user/signup';
+	var host = isProduction ? productionHost : devHost;
+	var endpoint = `${host}/user/signup`;
 	var method = 'POST';
 	var body = JSON.stringify({
 		username: username,
@@ -80,14 +82,14 @@ function signupUser() {
 	httpRequest.send(body);
 }
 
-function isAuthorized () {
+function isAuthorized() {
 	// Get token cookie
 	var cookie = getCookie('token');
 	// "cookie" is not equal to false
 	return cookie !== false;
 }
 
-function logoutUser () {
+function logoutUser() {
 	deleteCookie('token');
 	deleteCookie('username');
 }

@@ -37,70 +37,74 @@ let production = false;
 
 let options = minimist(process.argv.slice(2));
 
-if (options.base) { base = './'; }
-if (options.min) { min = '.min'; }
-if (options.production) { production = true; }
+if (options.base) {
+	base = './';
+}
+if (options.min) {
+	min = '.min';
+}
+if (options.production) {
+	production = true;
+}
 
 
 /* ================
 // Compile Pug
 // ============= */
 
-let pugLocals = {
-	base: base,
-	min: min,
-	gallery: []
-};
+// let pugLocals = {
+// 	base: base,
+// 	min: min,
+// 	gallery: []
+// };
 
-function renameFile(file) {
-	let name = file.replace('-', ' ');
-	name = name.substring(0, name.indexOf('.'));
+// function renameFile(file) {
+// 	let name = file.replace('-', ' ');
+// 	name = name.substring(0, name.indexOf('.'));
 
-	return name;
-}
+// 	return name;
+// }
 
-function readGallery(dir, key, nest) {
+// function readGallery(dir, key, nest) {
 
-	fs.readdir(dir, function (err, images) {
-		if (err) { return console.error(err); }
+// 	fs.readdir(dir, function (err, images) {
+// 		if (err) { return console.error(err); }
 
-		if (key == null) { key = 'root'; }
-		if (nest == null) { nest = ''; }
+// 		if (key == null) { key = 'root'; }
+// 		if (nest == null) { nest = ''; }
 
-		pugLocals.gallery[key] = [];
+// 		pugLocals.gallery[key] = [];
 
-		for (let i in images) {
-			if (fs.statSync(dir + '/' + images[i]).isDirectory()) {
-				readGallery(dir + '/' + images[i], images[i], images[i] + '/');
-			} else {
-				let name = renameFile(images[i]);
+// 		for (let i in images) {
+// 			if (fs.statSync(dir + '/' + images[i]).isDirectory()) {
+// 				readGallery(dir + '/' + images[i], images[i], images[i] + '/');
+// 			} else {
+// 				let name = renameFile(images[i]);
 
-				pugLocals.gallery[key].push({
-					file: nest + images[i],
-					name: name
-				});
-			}
-		}
-	});
+// 				pugLocals.gallery[key].push({
+// 					file: nest + images[i],
+// 					name: name
+// 				});
+// 			}
+// 		}
+// 	});
 
-}
+// }
 
-gulp.task('gallery', function () {
+// gulp.task('gallery', function () {
 
-	pugLocals.gallery = {};
+// 	pugLocals.gallery = {};
 
-	readGallery('src/images/');
+// 	readGallery('src/images/');
 
-});
+// });
 
 gulp.task('pug', function () {
-
 	return gulp.src([
 		'src/pug/pages/**/*.pug',
 		'!src/pug/pages/**/_*.pug'
 	])
 		.pipe(pug({
-			locals: pugLocals,
 			pretty: true
 		}))
 		.pipe(gulp.dest('./'))
@@ -124,7 +128,6 @@ gulp.task('pug-pages', function () {
 			skip: 'node_modules'
 		}))
 		.pipe(pug({
-			locals: pugLocals,
 			pretty: true
 		}))
 		.pipe(gulp.dest('./'))
@@ -183,15 +186,15 @@ gulp.task('js', function () {
 // Optimize Images
 // ============= */
 
-gulp.task('images', function () {
+// gulp.task('images', function () {
 
-	return gulp.src('src/images/**/*')
-		.pipe(changed(dist + 'images'))
-		.pipe(imagemin())
-		.pipe(gulp.dest(dist + 'images'))
-		.pipe(browserSync.stream());
+// 	return gulp.src('src/images/**/*')
+// 		.pipe(changed(dist + 'images'))
+// 		.pipe(imagemin())
+// 		.pipe(gulp.dest(dist + 'images'))
+// 		.pipe(browserSync.stream());
 
-});
+// });
 
 
 /* ================

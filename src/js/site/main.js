@@ -1,5 +1,8 @@
 /* globals loadAllPosts */
 var publicPage;
+var isProduction = false;
+var productionHost = 'http://46.101.190.192:8080';
+var devHost = 'http://localhost:8080';
 (function () {
 
 	window.onload = function () {
@@ -18,6 +21,7 @@ var publicPage;
 		];
 
 		if (isProduction) {
+			isProduction = true;
 			for (var i = 0; i < publicPages.length; i++) {
 				publicPages[i] = '/' + productionUrl + publicPages[i];
 			}

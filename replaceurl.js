@@ -6,10 +6,10 @@ let allFiles = glob.sync('./dist/**/**.html');
 console.log('Fixing all urls!');
 
 allFiles.forEach((file) => {
-	let siteCssLinkRegex = /href="\/css\/site.css"/;
+	let siteCssLinkRegex = /href="\/dist\/css\/site.css"/;
 	replace({
 		regex: siteCssLinkRegex,
-		replacement: 'href="/css/site.min.css/"',
+		replacement: 'href="/css/site.min.css"',
 		paths: [file]
 	});
 	var regexHrefs = new RegExp('href="\/', 'g');
@@ -19,7 +19,7 @@ allFiles.forEach((file) => {
 		paths: [file]
 	});
 
-	var regexSrcs = new RegExp('src="\/', 'g');
+	var regexSrcs = new RegExp('src="\/dist\/', 'g');
 	replace({
 		regex: regexSrcs,
 		replacement: 'src="/hackerNews-clone-project-frontend/',

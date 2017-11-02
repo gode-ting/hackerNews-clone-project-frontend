@@ -5,7 +5,8 @@ function loadUserProfile() {
 function getUserProfile() {
 	var username = getItemIdFromQueryString('username');
 
-	var endpoint = `http://localhost:8080/user?username=${username}`;
+	var host = isProduction ? productionHost : devHost;
+	var endpoint = `${host}/user?username=${username}`;
 	var method = 'GET';
 	var httpRequest = new XMLHttpRequest();
 
