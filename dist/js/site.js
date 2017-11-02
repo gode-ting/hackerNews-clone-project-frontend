@@ -342,12 +342,10 @@ function getItem() {
 	var endpoint = `http://46.101.190.192:8080/api/post/comments/${itemId}`;
 	var method = 'GET';
 	var httpRequest = new XMLHttpRequest();
-	console.log('Item id: ', itemId);
 
 	httpRequest.onreadystatechange = function () {
 		if (httpRequest.readyState === 4 && httpRequest.status === 200) {
 			// var allPosts = JSON.parse(httpRequest.responseText);
-			console.log(httpRequest);
 		}
 	};
 
@@ -405,16 +403,13 @@ var publicPage;
 	window.onload = function () {
 		console.log('Window ready - main .js');
 		var currentPath = window.location.pathname;
-		var currentUrl = window.location.href;
-		let productionUrl = 'http://hacker-newz.bitballoon.com';
-		var productionRegex = new RegExp(productionUrl, '');
-		var isProduction = productionRegex.test(currentUrl);
 
 		tokenAndUsernameSet();
 
 		var publicPages = [
 			'/login/',
 			'/comments/',
+			'/user/',
 			'/'
 		];
 
@@ -430,8 +425,6 @@ var publicPage;
 
 		var indexRegex = /^\/$/;
 		if (indexRegex.test(currentPath)) {
-			// index.js function
-			console.log('Index');
 			loadAllPosts();
 		}
 
@@ -529,12 +522,11 @@ function getItemIdFromQueryString(field, selector) {
 }
 function submitPost() {
 	// post_parent always set to -1 as there can't be any comment to a new post
-	var postParent = "";
+	var postParent = '';
 	// Same as above
 	var postType = 'story';
 	var title = document.getElementById('titleSubmit').value;
 	var url = document.getElementById('urlSubmit').value;
-	console.log(url)
 	var text = document.getElementById('textSubmit').value;
 	var token = getCookie('token');
 	var username = getCookie('username');
@@ -572,7 +564,6 @@ function submitPost() {
 
 	fetch(request).then(function (response) {
 		if (!response.ok) {
-			console.log(response)
 			document.getElementById('submitError').innerHTML = '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">×</span>Something went wrong... Please try again';
 			document.getElementById('submitError').style.display = 'block';
 			throw Error(response.statusText);
@@ -596,8 +587,6 @@ function getUserProfile() {
 			var userProfile = JSON.parse(httpRequest.responseText);
 			var created = userProfile.createdAt;
 			var karma = userProfile.karma;
-
-			console.log('Created: ', created);
 
 			var usernameElement = document.getElementById('userProfile');
 			var createdElement = document.getElementById('createdText');
@@ -649,7 +638,7 @@ function upvoteHttp(postId, username, token) {
 			alert('Something went wrong');
 			throw Error(response.statusText);
 		} else {
-			console.log(response);
+			console.error(response);
 		}
 	});
 }

@@ -5,16 +5,13 @@ var publicPage;
 	window.onload = function () {
 		console.log('Window ready - main .js');
 		var currentPath = window.location.pathname;
-		var currentUrl = window.location.href;
-		let productionUrl = 'http://hacker-newz.bitballoon.com';
-		var productionRegex = new RegExp(productionUrl, '');
-		var isProduction = productionRegex.test(currentUrl);
 
 		tokenAndUsernameSet();
 
 		var publicPages = [
 			'/login/',
 			'/comments/',
+			'/user/',
 			'/'
 		];
 
