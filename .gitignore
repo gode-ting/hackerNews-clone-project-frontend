@@ -1,6 +1,6 @@
 # Ignore everything
 node_modules
-./index.html
+index.html
 comments/
 item/
 login/
