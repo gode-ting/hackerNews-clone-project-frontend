@@ -1,4 +1,0 @@
-mixin text(...modifiers)
-	- modifiers = modifiers.map(modifier => `span--${modifier}`);
-	span(class=(['span', ...modifiers]))&attributes(attributes)
-		block

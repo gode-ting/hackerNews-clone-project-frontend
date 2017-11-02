@@ -1,4 +1,0 @@
-mixin link(...modifiers)
-	- modifiers = modifiers.map(modifier => `link--${modifier}`);
-	a(class=(['link', ...modifiers]))&attributes(attributes)
-		block

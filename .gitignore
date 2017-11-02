@@ -1,8 +1,0 @@
-# Ignore everything
-node_modules
-./index.html
-comments/
-item/
-login/
-submit/
-user/
