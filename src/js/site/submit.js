@@ -1,11 +1,10 @@
 function submitPost() {
 	// post_parent always set to -1 as there can't be any comment to a new post
-	var postParent = "";
+	var postParent = '';
 	// Same as above
 	var postType = 'story';
 	var title = document.getElementById('titleSubmit').value;
 	var url = document.getElementById('urlSubmit').value;
-	console.log(url)
 	var text = document.getElementById('textSubmit').value;
 	var token = getCookie('token');
 	var username = getCookie('username');
@@ -43,7 +42,6 @@ function submitPost() {
 
 	fetch(request).then(function (response) {
 		if (!response.ok) {
-			console.log(response)
 			document.getElementById('submitError').innerHTML = '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">×</span>Something went wrong... Please try again';
 			document.getElementById('submitError').style.display = 'block';
 			throw Error(response.statusText);

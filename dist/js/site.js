@@ -3,7 +3,7 @@ function loginUser(form) {
 	var username = document.getElementById('usernameLogin').value;
 	var password = document.getElementById('passwordLogin').value;
 
-	var endpoint = 'http://localhost:8080/login';
+	var endpoint = 'http://46.101.190.192:8080/login';
 	var method = 'POST';
 	var body = JSON.stringify({
 		username: username,
@@ -16,7 +16,7 @@ function loginUser(form) {
 		mode: 'CORS',
 		redirect: 'follow',
 		headers: new Headers({
-			'Access-Control-Allow-Origin': 'http://localhost:8080',
+			'Access-Control-Allow-Origin': 'http://46.101.190.192:8080',
 			'Access-Control-Allow-Credentials': true,
 			'Access-Control-Expose-Headers': 'Authorization',
 			'Access-Control-Allow-Headers': 'Authorization'
@@ -58,7 +58,7 @@ function signupUser() {
 	var username = document.getElementById('usernameSignup').value;
 	var password = document.getElementById('passwordSignup').value;
 
-	var endpoint = 'http://localhost:8080/user/signup';
+	var endpoint = 'http://46.101.190.192:8080/user/signup';
 	var method = 'POST';
 	var body = JSON.stringify({
 		username: username,
@@ -92,14 +92,13 @@ function logoutUser () {
 	deleteCookie('username');
 }
 function loadAllComments() {
-	var endpoint = 'http://localhost:8080/api/post/allComments';
+	var endpoint = 'http://46.101.190.192:8080/api/post/allComments';
 	var method = 'get';
 	var httpRequest = new XMLHttpRequest();
 
 	httpRequest.onreadystatechange = function () {
 		if (httpRequest.readyState === 4 && httpRequest.status === 200) {
 			var allComments = JSON.parse(httpRequest.responseText);
-			console.log('All comments: ', allComments);
 			generateCommentsTable(allComments);
 		}
 	};
@@ -110,7 +109,6 @@ function loadAllComments() {
 }
 
 function generateCommentsTable(data) {
-	console.log('data: ', data);
 	for (var i = 0; i < data.length; i++) {
 
 		// Variables for current data object
@@ -225,7 +223,7 @@ function deleteCookie(cookiename) {
 // 	}
 // }
 function loadAllPosts() {
-	var endpoint = 'http://localhost:8080/api/post?page=1';
+	var endpoint = 'http://46.101.190.192:8080/api/post?page=1';
 	var method = 'get';
 	var httpRequest = new XMLHttpRequest();
 
@@ -341,7 +339,7 @@ function loadItemData() {
 function getItem() {
 	let itemId = getItemIdFromQueryString('id');
 
-	var endpoint = `http://localhost:8080/api/post/comments/${itemId}`;
+	var endpoint = `http://46.101.190.192:8080/api/post/comments/${itemId}`;
 	var method = 'GET';
 	var httpRequest = new XMLHttpRequest();
 	console.log('Item id: ', itemId);
@@ -407,9 +405,10 @@ var publicPage;
 	window.onload = function () {
 		console.log('Window ready - main .js');
 		var currentPath = window.location.pathname;
-		var productionUrl = 'hackerNews-clone-project-frontend';
+		var currentUrl = window.location.href;
+		let productionUrl = 'http://hacker-newz.bitballoon.com';
 		var productionRegex = new RegExp(productionUrl, '');
-		var isProduction = productionRegex.test(currentPath);
+		var isProduction = productionRegex.test(currentUrl);
 
 		tokenAndUsernameSet();
 
@@ -418,12 +417,6 @@ var publicPage;
 			'/comments/',
 			'/'
 		];
-
-		if (isProduction) {
-			for (var i = 0; i < publicPages.length; i++) {
-				publicPages[i] = '/' + productionUrl + publicPages[i];
-			}
-		}
 
 		publicPage = publicPages.indexOf(currentPath) !== -1;
 
@@ -435,7 +428,7 @@ var publicPage;
 		var divAuthorized = document.getElementById('divAuthorized');
 		divAuthorized.style.display = 'block';
 
-		var indexRegex = isProduction ? new RegExp(`/${productionUrl}`, '') : /^\/$/;
+		var indexRegex = /^\/$/;
 		if (indexRegex.test(currentPath)) {
 			// index.js function
 			console.log('Index');
@@ -556,7 +549,7 @@ function submitPost() {
 		return;
 	}
 
-	var endpoint = 'http://localhost:8080/api/post';
+	var endpoint = 'http://46.101.190.192:8080/api/post';
 	var method = 'post';
 	var body = JSON.stringify({
 		post_title: title,
@@ -594,7 +587,7 @@ function loadUserProfile() {
 function getUserProfile() {
 	var username = getItemIdFromQueryString('username');
 
-	var endpoint = `http://localhost:8080/user?username=${username}`;
+	var endpoint = `http://46.101.190.192:8080/user?username=${username}`;
 	var method = 'GET';
 	var httpRequest = new XMLHttpRequest();
 
@@ -633,7 +626,7 @@ function makeVote(event, ele, how) {
 }
 
 function upvoteHttp(postId, username, token) {
-	var endpoint = 'http://localhost:8080/api/post/vote';
+	var endpoint = 'http://46.101.190.192:8080/api/post/vote';
 	var method = 'POST';
 	var body = JSON.stringify({
 		post_id: postId,
@@ -644,7 +637,7 @@ function upvoteHttp(postId, username, token) {
 	var request = new Request(endpoint, {
 		method: method,
 		headers: new Headers({
-			'Access-Control-Allow-Origin': 'http://localhost:8080',
+			'Access-Control-Allow-Origin': 'http://46.101.190.192:8080',
 			'Authorization': token,
 			'Content-Type': 'application/json'
 		}),

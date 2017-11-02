@@ -34,7 +34,7 @@ function upvoteHttp(postId, username, token) {
 			alert('Something went wrong');
 			throw Error(response.statusText);
 		} else {
-			console.log(response);
+			console.error(response);
 		}
 	});
 }

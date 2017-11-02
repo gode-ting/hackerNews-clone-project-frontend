@@ -5,9 +5,10 @@ var publicPage;
 	window.onload = function () {
 		console.log('Window ready - main .js');
 		var currentPath = window.location.pathname;
-		var productionUrl = 'hackerNews-clone-project-frontend';
+		var currentUrl = window.location.href;
+		let productionUrl = 'http://hacker-newz.bitballoon.com';
 		var productionRegex = new RegExp(productionUrl, '');
-		var isProduction = productionRegex.test(currentPath);
+		var isProduction = productionRegex.test(currentUrl);
 
 		tokenAndUsernameSet();
 
@@ -16,12 +17,6 @@ var publicPage;
 			'/comments/',
 			'/'
 		];
-
-		if (isProduction) {
-			for (var i = 0; i < publicPages.length; i++) {
-				publicPages[i] = '/' + productionUrl + publicPages[i];
-			}
-		}
 
 		publicPage = publicPages.indexOf(currentPath) !== -1;
 
@@ -33,10 +28,8 @@ var publicPage;
 		var divAuthorized = document.getElementById('divAuthorized');
 		divAuthorized.style.display = 'block';
 
-		var indexRegex = isProduction ? new RegExp(`/${productionUrl}`, '') : /^\/$/;
+		var indexRegex = /^\/$/;
 		if (indexRegex.test(currentPath)) {
-			// index.js function
-			console.log('Index');
 			loadAllPosts();
 		}
 

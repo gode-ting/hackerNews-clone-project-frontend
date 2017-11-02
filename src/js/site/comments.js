@@ -6,7 +6,6 @@ function loadAllComments() {
 	httpRequest.onreadystatechange = function () {
 		if (httpRequest.readyState === 4 && httpRequest.status === 200) {
 			var allComments = JSON.parse(httpRequest.responseText);
-			console.log('All comments: ', allComments);
 			generateCommentsTable(allComments);
 		}
 	};
@@ -17,7 +16,6 @@ function loadAllComments() {
 }
 
 function generateCommentsTable(data) {
-	console.log('data: ', data);
 	for (var i = 0; i < data.length; i++) {
 
 		// Variables for current data object

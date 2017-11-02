@@ -15,8 +15,6 @@ function getUserProfile() {
 			var created = userProfile.createdAt;
 			var karma = userProfile.karma;
 
-			console.log('Created: ', created);
-
 			var usernameElement = document.getElementById('userProfile');
 			var createdElement = document.getElementById('createdText');
 			var karmaElement = document.getElementById('karmaText');

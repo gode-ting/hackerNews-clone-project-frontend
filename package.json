@@ -10,7 +10,7 @@
 	"scripts": {
 		"start": "gulp",
 		"build": "gulp build",
-		"build-prod": "gulp build --production --min",
+		"build-prod": "gulp build --production --min && node replaceurl.js",
 		"deploy-gh": "npm run build-prod && node replaceurl.js && gulp ghPages",
 		"clean": "gulp clean"
 	},
