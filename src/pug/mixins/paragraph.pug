@@ -1,0 +1,4 @@
+mixin paragraph(...modifiers)
+	- modifiers = modifiers.map(modifier => `paragraph--${modifier}`);
+	paragraph(class=(['paragraph', ...modifiers]))&attributes(attributes)
+		block

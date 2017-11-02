@@ -1,0 +1,19 @@
+{
+	"extends": "@debitoor/eslint-config-debitoor",
+	"globals": {
+		"setCookie": true,
+		"loginUser": true,
+		"signupUser": true,
+		"getCookie": true,
+		"isAuthorized": true,
+		"loadAllComments": true,
+		"makeVote": true,
+		"getItemIdFromQueryString": true,
+		"loadUserProfile": true,
+		"loadItemData": true,
+		"deleteCookie": true
+	},
+	"env": {
+		"browser": true
+	}
+}

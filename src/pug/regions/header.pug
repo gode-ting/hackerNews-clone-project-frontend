@@ -1,0 +1,12 @@
+nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+	a.navbar-brand.top-nav__link#top-nav__link-index(href='/') Hacker Newz
+	button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
+		span.navbar-toggler-icon
+	#navbarCollapse.navbar-collapse.collapse(style='')
+		ul.navbar-nav.mr-auto
+			li.nav-item
+				a.nav-link.top-nav__link#top-nav__link-comments(href='/comments') comments
+			li.nav-item
+				a.nav-link.top-nav__link#top-nav__link-submit(href='/submit') submit
+		+link("button", "login")(id="loginButton" href="/login") Login
+		+link("button", "logout")(id="logoutButton" href="/" onclick="logoutUser()") Logout

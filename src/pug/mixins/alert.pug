@@ -1,0 +1,5 @@
+mixin alert(...modifiers)
+	- modifiers = modifiers.map(modifier => `alert--${modifier}`);
+	div(class=(['alert', ...modifiers]))&attributes(attributes)
+		span.closebtn(onclick="this.parentElement.style.display='none';") ×
+		block
