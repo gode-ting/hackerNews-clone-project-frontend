@@ -1,5 +1,10 @@
 # Hacker news clone frontend
 
+## URL
+
+[http://hacker-newz.bitballoon.com/](http://hacker-newz.bitballoon.com/)
+
+
 ## Development
 
 **Node.js:** Before you can start develop in this project, you will need to install node.js. You can get it [here](https://nodejs.org/en/).
@@ -71,4 +76,3 @@ You can read about pug [here](https://pugjs.org/api/getting-started.html).
 ### _sass_ folder.
 
 Responsible for all stylings. Will be transpiled to `css`. 
-
