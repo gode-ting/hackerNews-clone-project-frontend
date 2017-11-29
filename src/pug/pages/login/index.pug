@@ -1,0 +1,39 @@
+extends ../_layout.pug
+
+block base
+	- base = "../";
+
+block title
+	- title = "HackerNewz | Gode ting"
+
+block description
+	- description= "Gode ting Cphbusiness Denmark school project";
+
+block content
+	h1 Login
+	.row
+		.col-sm
+			form(id="login-form" name="login")
+				.form-group
+					input#usernameLogin.form-control(type="text", aria-describedby="usernameHelp", placeholder="Enter username" required)
+				.form-group
+					input#passwordLogin.form-control(type="password", placeholder="Password" name="password" required)
+					small#usernameHelp.form-text.text-muted We"ll never share your credentials with anyone else.
+				button.btn.btn-primary(type="button" value="Submit" onClick="loginUser()") Login
+		.col-sm
+			+alert("error", "hidden")(id="loginError") Something went wrong. Please try again
+			+alert("success", "hidden")(id="loginSuccess")
+	+hr("login-signup")
+	h3 ... Or create a new account
+	.row
+		.col-sm
+			form(id="signup-form" name="signup")
+				.form-group
+					input#usernameSignup.form-control(type="text", aria-describedby="usernameHelp", placeholder="Enter username" required)
+				.form-group
+					input#passwordSignup.form-control(type="password", placeholder="Password" required)
+					small#usernameHelp.form-text.text-muted We"ll never share your credentials with anyone else.
+				button.btn.btn-primary(type="button" value="Submit" onClick="signupUser()") Signup
+		.col-sm
+			+alert("error", "hidden")(id="signupError") Something went wrong. Please try again
+			+alert("success", "hidden")(id="signupSuccess") Success! Successfully signed up

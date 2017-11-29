@@ -1,0 +1,25 @@
+extends ../_layout.pug
+
+block base
+	- base = "../";
+
+block title
+	- title = "HackerNewz | Gode ting"
+
+block description
+	- description= "Gode ting Cphbusiness Denmark school project";
+
+block content
+	h3#itemTitle Item title
+	+paragraph("item").mb-3 item info
+	.row
+		.col-sm
+			.form-group
+				label(for="itemComment")
+				textarea.form-control#itemComment(rows="3")
+		.col-sm
+	button.mb-3.btn.btn-primary#addComment(onclick="addComment()") Add comments
+
+	.row#allComments
+		.col-sm test
+			

@@ -1,0 +1,16 @@
+extends ../_layout.pug
+
+block base
+	- base = "../";
+
+block title
+	- title = "HackerNewz | Gode ting"
+
+block description
+	- description= "Gode ting Cphbusiness Denmark school project";
+
+block content
+	h3 Recent comments
+
+	table.table.table--allComments#allComments
+		tbody#allCommentsBody

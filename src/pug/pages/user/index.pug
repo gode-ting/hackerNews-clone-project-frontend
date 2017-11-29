@@ -1,0 +1,23 @@
+extends ../_layout.pug
+
+block base
+	- base = "../";
+
+block title
+	- title = "HackerNewz | Gode ting"
+
+block description
+	- description= "Gode ting Cphbusiness Denmark school project";
+
+block content
+		.row
+			.col-sm
+			.col-sm-7
+				+box("userProfile")
+					+paragraph("username").mb-3 User: 
+						+text()(id="userProfile")
+					+paragraph().mb-3 Created: 
+						+text()(id="createdText")
+					+paragraph().mb-3 Karma: 
+						+text()(id="karmaText")
+			.col-sm

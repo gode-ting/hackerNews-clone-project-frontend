@@ -1,0 +1,42 @@
+extends ../_layout.pug
+
+block base
+	- base = "../";
+
+block title
+	- title = "HackerNewz | Gode ting"
+
+block description
+	- description= "Gode ting Cphbusiness Denmark school project";
+
+block content
+
+	h1.text-center Submit
+	.row
+		.col-sm
+		.col-sm-6
+			.form-group
+				label(for="titleSubmit") Title
+				input.form-control#titleSubmit(type="text" placeholder="title")
+			.form-group
+				label(for="urlSubmit") Url
+				input.form-control#urlSubmit(type="text" placeholder="url")
+				</br>
+			.form-group
+				+paragraph ... Or
+			.form-group
+				label(for="textSubmit") Text
+				input.form-control#textSubmit(type="text" placeholder="text")
+		.col-sm
+	.row
+		.col-sm
+		.col-sm-6
+			+paragraph("muted").mb-3 Leave url blank to submit a question for discussion. If there is no url, the text (if any) will appear at the top of the thread.
+			button.btn.btn-primary(type="button" onClick="submitPost()") Submit
+		.col-sm
+	.row
+		.col-sm
+		.col-sm-6
+			+alert("error", "hidden")(id="submitError") You have to specify both title and url. Please try again
+			+alert("success", "hidden")(id="submitSuccess") Success! Successfully created post
+		.col-sm
